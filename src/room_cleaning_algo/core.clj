@@ -12,6 +12,15 @@
   (println "If you put them in the dishwasher, make sure they are rinsed first")
   (println "If you see dishes on the way out, pick them up"))
 
+(defn yes? []
+  (let [input (get-input)]
+    (if (or (= input "y") (= input "Y"))
+      true
+      false)))
+
+(defn no? []
+  (not (yes?)))
+
 (defn collect-dishes
   []
   (loop [trips-made-to-kitchen 0]
@@ -25,6 +34,27 @@
           (println "Congrats, you are done doing dishes")
           trips-made-to-kitchen)))))
 
+(defn make-bed []
+  (let [result (atom {})]
+    (put-output "Are the sheets on correctly and smoothed?")
+    (if (no?)
+      (do (put-output "Remove the blanket")
+          (put-output "Smooth the sheets.")
+          (swap! result assoc :smoothed-sheets true)
+          (get-input)))
+    (put-output "Is the pillow in place?")
+    (if (no?)
+      (do (put-output "Put the pillow in place.")
+          (swap! result assoc :placed-pillow true)
+          (get-input)))
+    (put-output "Is the blanket on smooth?")
+    (if (no?)
+      (do (put-output "Smooth out the blanket")
+          (swap! result assoc :smoothed-blanket true)
+          (get-input)))
+    @result))
+
 
 (defn -main []
-  {:trips-made-to-the-kitchen-for-dishes (collect-dishes)})
+  {:trips-made-to-the-kitchen-for-dishes (collect-dishes)
+   :things-had-to-be-done-to-make-bed (make-bed)})
