@@ -12,15 +12,6 @@
   (println "If you put them in the dishwasher, make sure they are rinsed first")
   (println "If you see dishes on the way out, pick them up"))
 
-(defn yes? []
-  (let [input (get-input)]
-    (if (or (= input "y") (= input "Y"))
-      true
-      false)))
-
-(defn no? []
-  (not (yes?)))
-
 (defn collect-dishes
   []
   (loop [trips-made-to-kitchen 0]
