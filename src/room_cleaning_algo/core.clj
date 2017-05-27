@@ -24,3 +24,7 @@
         (do
           (println "Congrats, you are done doing dishes")
           trips-made-to-kitchen)))))
+
+
+(defn -main []
+  {:trips-made-to-the-kitchen-for-dishes (collect-dishes)})
