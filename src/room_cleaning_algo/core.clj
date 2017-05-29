@@ -76,8 +76,15 @@
         (recur (+ 1 missing-items)))))
   (put-output "OK. Now, if you would like, make new spots on the wall of things."))
 
+(defn do-the-dishes []
+  (put-output "Now it is time to do the dishes. Have you done them yet?")
+  (if (no?)
+    (put-output "Ok. Go do them")
+    (put-output "Nice.")))
 
 
 (defn -main []
   {:trips-made-to-the-kitchen-for-dishes (collect-dishes)
-   :things-had-to-be-done-to-make-bed (make-bed)})
+   :things-had-to-be-done-to-make-bed (make-bed)
+   :hang-things (hang-things)
+   :do-the-dishes (do-the-dishes)})
