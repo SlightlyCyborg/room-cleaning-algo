@@ -38,9 +38,11 @@
         (do (handle-found-dishes)
             (get-input)
             (recur (+ 1 trips-made-to-kitchen)))
-        (do
-          (put-output "Congrats, you are done doing dishes")
-          trips-made-to-kitchen))))
+         (do
+           (if (= trips-made-to-kitchen 0)
+             (put-output "Odd. Did you not eat?")
+             (put-output "Congrats, you are done doing dishes"))
+           trips-made-to-kitchen))))
 
 (defn make-bed []
   (let [result (atom {})]
