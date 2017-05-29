@@ -15,10 +15,10 @@
     (the-fn output)))
 
 (defn handle-found-dishes []
-  (println "Take it(them) to the sink or dishwasher. Waiting for input to continue.")
+  (put-output "Take it(them) to the sink or dishwasher. Waiting for input to continue.")
   ;;The depth of the stack would be enormous if the command was translated all the way down to base units (muscle movements?).
-  (println "If you put them in the dishwasher, make sure they are rinsed first")
-  (println "If you see dishes on the way out, pick them up"))
+  (put-output "If you put them in the dishwasher, make sure they are rinsed first")
+  (put-output "If you see dishes on the way out, pick them up"))
 
 (defn yes? []
   (let [input (get-input)]
@@ -32,15 +32,14 @@
 (defn collect-dishes
   []
   (loop [trips-made-to-kitchen 0]
-    (println "Scan the room. Do you see a dishes? Y/N")
-    (let [input (get-input)]
-      (if (or (= input "y") (= input "Y"))
+    (put-output "Scan the room. Do you see dirty dishes?")
+      (if (yes?)
         (do (handle-found-dishes)
             (get-input)
             (recur (+ 1 trips-made-to-kitchen)))
         (do
-          (println "Congrats, you are done doing dishes")
-          trips-made-to-kitchen)))))
+          (put-output "Congrats, you are done doing dishes")
+          trips-made-to-kitchen))))
 
 (defn make-bed []
   (let [result (atom {})]
@@ -61,6 +60,7 @@
           (swap! result assoc :smoothed-blanket true)
           (get-input)))
     @result))
+
 
 
 (defn -main []
