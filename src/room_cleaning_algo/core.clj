@@ -31,6 +31,7 @@
 
 (defn collect-dishes
   []
+  (put-output "Ok. Lets do the dishes.")
   (loop [trips-made-to-kitchen 0]
     (put-output "Scan the room. Do you see dirty dishes?")
       (if (yes?)
@@ -43,22 +44,24 @@
 
 (defn make-bed []
   (let [result (atom {})]
-    (put-output "Are the sheets on correctly and smoothed?")
+    (put-output "Is your bed made?")
     (if (no?)
-      (do (put-output "Remove the blanket")
-          (put-output "Smooth the sheets.")
-          (swap! result assoc :smoothed-sheets true)
-          (get-input)))
-    (put-output "Is the pillow in place?")
-    (if (no?)
-      (do (put-output "Put the pillow in place.")
-          (swap! result assoc :placed-pillow true)
-          (get-input)))
-    (put-output "Is the blanket on smooth?")
-    (if (no?)
-      (do (put-output "Smooth out the blanket")
-          (swap! result assoc :smoothed-blanket true)
-          (get-input)))
+     (do (put-output "Are the sheets on correctly and smoothed?")
+         (if (no?)
+           (do (put-output "Remove the blanket")
+               (put-output "Smooth the sheets.")
+               (swap! result assoc :smoothed-sheets true)
+               (get-input)))
+         (put-output "Is the pillow in place?")
+         (if (no?)
+           (do (put-output "Put the pillow in place.")
+               (swap! result assoc :placed-pillow true)
+               (get-input)))
+         (put-output "Is the blanket on smooth?")
+         (if (no?)
+           (do (put-output "Smooth out the blanket")
+               (swap! result assoc :smoothed-blanket true)
+               (get-input)))))
     @result))
 
 (defn hang-things
@@ -74,7 +77,8 @@
               (get-input))
           (put-output "Ok. Well, maybe you will remember later"))
         (recur (+ 1 missing-items)))))
-  (put-output "OK. Now, if you would like, make new spots on the wall of things."))
+  (put-output "OK. Now, if you would like, make new spots on the wall of things.")
+  (get-input))
 
 (defn do-the-dishes []
   (put-output "Now it is time to do the dishes. Have you done them yet?")
@@ -87,4 +91,5 @@
   {:trips-made-to-the-kitchen-for-dishes (collect-dishes)
    :things-had-to-be-done-to-make-bed (make-bed)
    :hang-things (hang-things)
-   :do-the-dishes (do-the-dishes)})
+   :do-the-dishes (do-the-dishes)}
+  (put-output "Ok. The room is sufficiently clean"))
