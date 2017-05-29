@@ -61,6 +61,21 @@
           (get-input)))
     @result))
 
+(defn hang-things
+  []
+  (put-output "Now it is time to do some organizing.")
+  (loop [missing-items 0]
+    (put-output "Do you see any spot on the wall of things that is normally occupied but is not currently?")
+    (if (yes?)
+      (do
+        (put-output "Can you remember what goes there?")
+        (if (yes?)
+          (do (put-output "Find it and put it in its place.")
+              (get-input))
+          (put-output "Ok. Well, maybe you will remember later"))
+        (recur (+ 1 missing-items)))))
+  (put-output "OK. Now, if you would like, make new spots on the wall of things."))
+
 
 
 (defn -main []
