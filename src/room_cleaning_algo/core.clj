@@ -3,8 +3,16 @@
 (defn get-input []
   (read-line))
 
+(defn change-input-fn [the-fn]
+  (defn get-input []
+    (the-fn)))
+
 (defn put-output [output]
   (println output))
+
+(defn change-output-fn [the-fn]
+  (defn put-output [output]
+    (the-fn output)))
 
 (defn handle-found-dishes []
   (println "Take it(them) to the sink or dishwasher. Waiting for input to continue.")
