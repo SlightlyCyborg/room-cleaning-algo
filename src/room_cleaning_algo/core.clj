@@ -93,5 +93,4 @@
   {:trips-made-to-the-kitchen-for-dishes (collect-dishes)
    :things-had-to-be-done-to-make-bed (make-bed)
    :hang-things (hang-things)
-   :do-the-dishes (do-the-dishes)}
-  (put-output "Ok. The room is sufficiently clean"))
+   :do-the-dishes (do-the-dishes)})
