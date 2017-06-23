@@ -88,9 +88,24 @@
     (put-output "Ok. Go do them")
     (put-output "Nice.")))
 
+(defn do-the-laundry []
+  (put-output "Is there enough dirty cloths to make a full load of laundry?")
+  (if (yes?)
+    (do
+      (put-output "Ok. First empty out one of the bins")
+      (get-input)
+      (put-output "Next, start with the most important clothing first (underwear?) and begin hand selecting which cloths should be washed.")
+      (get-input)
+      (put-output "Now take them to the washer and start the load.")
+      1)
+    (do
+      (put-output "Ok. No laundry needs to be done today.")
+      0)))
+
 
 (defn -main []
-  {:trips-made-to-the-kitchen-for-dishes (collect-dishes)
+  {:loads-of-laundry-started (do-the-laundry)
+   :trips-made-to-the-kitchen-for-dishes (collect-dishes)
    :things-had-to-be-done-to-make-bed (make-bed)
    :hang-things (hang-things)
    :do-the-dishes (do-the-dishes)})
