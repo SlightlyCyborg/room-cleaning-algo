@@ -2,7 +2,7 @@
 
 ## Why?
 
-This room cleaning algorithm is meant to model the subconscious algorithm I use while cleaning my room.
+This room cleaning algorithm is meant to model the way I clean my room and help me conciously improve the way I do it.
 
 ## Usage
 
