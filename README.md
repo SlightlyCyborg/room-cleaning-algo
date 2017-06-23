@@ -8,6 +8,8 @@ This room cleaning algorithm is meant to model the way I clean my room and help 
 
 ```
 lein repl
+
+>> (-main)
 ```
 
 ## License
