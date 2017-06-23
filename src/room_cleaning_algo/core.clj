@@ -7,6 +7,13 @@
   (defn get-input []
     (the-fn)))
 
+(defn wait-on-user []
+  (get-input))
+
+(defn change-wait-on-user-fn [the-fn]
+  (defn wait-on-user []
+    (the-fn)))
+
 (defn put-output [output]
   (println output))
 
@@ -93,9 +100,9 @@
   (if (yes?)
     (do
       (put-output "Ok. First empty out one of the bins")
-      (get-input)
+      (wait-on-user)
       (put-output "Next, start with the most important clothing first (underwear?) and begin hand selecting which cloths should be washed.")
-      (get-input)
+      (wait-on-user)
       (put-output "Now take them to the washer and start the load.")
       1)
     (do
