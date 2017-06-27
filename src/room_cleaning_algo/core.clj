@@ -106,8 +106,16 @@
       (put-output "Now take them to the washer and start the load.")
       1)
     (do
-      (put-output "Ok. No laundry needs to be done today.")
-      0)))
+      (put-output "Ok. No laundry needs to be washed today.")
+      0))
+  (wait-on-user)
+  (put-output "Is there a load of laundry that has recently finished drying?")
+  (if (yes?)
+    (do
+      (put-output "Ok. Bring it up to your room")
+      (wait-on-user)
+      (put-output "Now fold or hang the laundry")
+      (wait-on-user))))
 
 
 (defn -main []
