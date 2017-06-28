@@ -117,6 +117,18 @@
       (put-output "Now fold or hang the laundry")
       (wait-on-user))))
 
+(defn extra-cleaning []
+  (put-output "Most likely, there are still things that need to be cleaned. Is this correct?")
+  (if (yes?)
+    (do
+      (loop [times 0]
+        (put-output "Ok. Put those things in their place and report back when you are finished.")
+        (wait-on-user)
+        (put-output "Do another check. Do you see more things that you wish to clean?")
+        (if (yes?)
+             (recur (+ 1 times)))))
+    (put-output "Oh. Ok. Well, you are done cleaning.")))
+
 
 (defn -main []
   {:loads-of-laundry-started (do-the-laundry)
